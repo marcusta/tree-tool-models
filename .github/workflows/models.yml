@@ -1,0 +1,55 @@
+# Every pull request: each models/<id>/ is checked with tree-tool's own model check (scripts/models.ts in
+# marcusta/tree-tool). Every push to main: the same check, then index.json and the model folders are published on
+# GitHub Pages, where the tree-tool app reads them.
+name: models
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: models-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: marcusta/tree-tool
+          path: .tree-tool
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+        working-directory: .tree-tool
+      - name: Check every model
+        run: bun .tree-tool/scripts/models.ts check models
+      - name: Index for the app
+        if: github.event_name != 'pull_request'
+        run: |
+          bun .tree-tool/scripts/models.ts index models --out _site/index.json
+          cp -r models _site/models
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  publish:
+    if: github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

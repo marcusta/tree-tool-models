@@ -1,0 +1,7 @@
+{
+  "name": "Pond-side weeping willow",
+  "description": "A weeping willow for the edge of a pond, on the leaf atlas drawn for tree-tool.",
+  "author": "tree-tool",
+  "license": "CC0-1.0",
+  "tree": { "species": "weeping-willow", "preset": "weeping", "seed": 3, "changes": {} }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Coastal windswept pine",
+  "description": "A Scots pine on an exposed shore: high, uneven crown with its limbs reaching away from the wind.",
+  "author": "tree-tool",
+  "license": "CC0-1.0",
+  "tree": { "species": "pine", "preset": "windswept", "seed": 7, "changes": { "limbs.windBias": 0.6 } }
+}

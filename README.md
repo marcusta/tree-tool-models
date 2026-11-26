@@ -11,7 +11,7 @@ One folder per model, `models/<id>/` (`id`: lower case letters, digits and `-`):
 | File | |
 |---|---|
 | `model.json` | Required. See below. |
-| `preview.png` | Required. A picture of the tree, at most 1024 px. |
+| `preview.png` | A picture of the tree, at most 1024 px. The app makes it. |
 | textures (`*.png`, `*.jpg`) | Optional. Your own pictures for texture slots, at most 2048 px. |
 | `profile.json` | Optional. A shader profile for your own shader, as the app loads it. |
 
@@ -52,6 +52,20 @@ Not allowed:
 
 ## Adding a model
 
-1. Make the tree in the app and note its settings.
-2. Fork this repo, add `models/<id>/` with the files above and open a pull request.
-3. Fill in the pull request's checklist. A maintainer reviews and merges it.
+The easy way is in the app: make the tree, open **Share this tree with everyone**, fill in name, author, licence and
+source, and press **Check and prepare**. It runs the same check as this repo's pull requests, renders `preview.png`,
+and gives you the files and a link to GitHub's upload page for `models/<id>/`. Drop the files there and choose
+**Propose changes**: GitHub makes your copy of the repo and opens the pull request.
+
+By hand: fork this repo, add `models/<id>/` with the files above and open a pull request. Fill in its checklist.
+
+Every pull request is checked by `.github/workflows/models.yml` with tree-tool's own check
+(`bun scripts/models.ts check models` in [tree-tool](https://github.com/marcusta/tree-tool)). A maintainer reviews
+and merges it; on `main` the workflow publishes `index.json` and the folders on
+<https://marcusta.github.io/tree-tool-models/>, where the app reads them.
+
+To check locally, with tree-tool checked out beside this repo:
+
+```sh
+bun ../tree-tool/scripts/models.ts check models
+```
