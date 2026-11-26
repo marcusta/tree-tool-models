@@ -1,0 +1,6 @@
+{
+  "name": "NC test",
+  "author": "Tester",
+  "license": "CC-BY-NC-4.0",
+  "tree": { "species": "pine", "preset": "full", "seed": 1, "changes": {} }
+}
