@@ -47,7 +47,7 @@ Not allowed:
 - Files from Unity Asset Store packs (NatureManufacture, Forst and the like), Fab, Quixel or Megascans. Their licences
   allow using them in your own projects, not passing the files on. The app refers to such packs by GUID instead, so
   the tree finds them in a Unity project that has the pack.
-- CC BY-ND (no changes allowed; the app resizes and repacks pictures) and CC BY-NC (people build courses they sell).
+- CC BY-ND (no changes allowed, and a tree built on a picture is a change) and CC BY-NC (people build courses they sell).
 - Anything you are not sure about.
 
 ## Adding a model
